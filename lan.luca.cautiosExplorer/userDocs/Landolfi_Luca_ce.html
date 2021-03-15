@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+@media print {
+  breakPage {page-break-after: always;}
+}
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+	font-size: 93%;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+top {
+	width: 100%;
+}
+
+
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 90%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #abe876;
+    color: #1632cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 90%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	font-size: 90%;
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	font-size: 90%;
+}
+pre{
+	font-family: "Consolas";
+	font-size: 85%;
+	background-color: #f5f5f5;
+	border: 1.5px solid silver;
+	padding: 5px;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	 
+    font-size: 18px;
+}
+k{
+    color: #990000;
+	font-weight: bold;
+	font-size: 90%;
+}
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+	padding: 10px;
+}
+
+h2 {
+    background-color: #9ed8ff;
+    font-size: 130%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 100%;
+}
+h4 {
+    background-color: #ccffcc;
+    font-size: 100%;
+	width: 95%;
+	border-radius: 5px;
+	padding: 2px;
+}
+h5 {
+    background-color: #d5ffb0;
+    font-size: 100%;
+
+}
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}
+div.remark{
+	background-color: #E3F2FD;
+    border: 1.5px solid #d5f2ed;
+    padding: 15px;
+    margin: 10px;
+	border-radius: 25px;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+ol, ul, li {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  padding-bottom: 5px;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+img {
+	border: 1.5px solid #d5f2ed
+
+}
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+div.wrapdesc{
+	width: 90%;
+	margin: auto;
+}
+
+div.imagedesc{
+	width: 85%;
+	margin: auto;
+}
+</style>
+    
+<head>
+  
+<title>CautiousExplorer</title></head>
+    
+<body>
+<div id="top">
+
+<h1>Lab ISS | the project cautiousExplorer<font size="5"></font> </h1>
+</div>  
+
+<div class="none"> 
+<h2>Introduction</h2>
+This case-study starts to deal with the design and development of proactive/reactive software systems that use aynchronous exchange of information.
+ 
+<h2>Requirements</h2>
+
+ 
+<div class="remark">
+Design and build a software system that allow the robot described in 
+<a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html" target="lab"><em>VirtualRobot2021.html</em></a>
+ to exibit the following behaviour:
+<ul>
+<li>the robot lives in a closed environment, delimited by walls that includes one or more devices (e.g. sonar) able to detect its presence;</li>
+<li>the robot has a <ks>den</ks> for refuge, located near a wall;</li>
+<li>the robot works as an <i>explorer of the environment</i>. Starting from its <ks>den</ks>,  the robot moves
+(either randomly or - preferably - in a more organized way) with the aim to find the fixed obstacles around the <ks>den</ks>. 
+The presence of mobile obstacles is (at the moment) excluded;</li>
+<li>since the robot is <i>'cautious'</i>,  it  returns immediately to the <ks>den</ks> as soon as it finds an obstacle.
+Optionally, it should also return to the <ks>den</ks> when a sonar detects its presence;
+</li>
+<li>the robot should remember the position of the obstacles found, by creating a sort of 'mental map' of the environment.</li>
+</ul>
+</div>
+
+ <h3>Delivery</h3>
+The customer requires to receive the completion of the analysis (of the requirments and of the problem)  by <k>Friday 12 March</k>. 
+Hopefully, he/she expects to receive also (in the same document) some detail about the project.<br/>
+The name of the file (in pdf) should be:
+<pre>
+cognome_nome_ce.pdf
+</pre>
+
+<h2>Requirement analysis</h2>
+ In the <b>interaction with the customer</b> we clarified that the customer intends:
+<ul>
+	<li>for <ks>robot</ks>: a device able to execute move commands sent over the network and communicate collision, as described in the document
+		<a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html" target="web"><em>
+		VirtualRobot2021.html</em></a> provided by the customer;</li>
+	<li>for <ks>lives</ks>: robot moves and <ks>work</ks> in this <ks>closed envirorment</ks></li>
+	<li>for <ks>closed envirorment</ks>: a conventional (rectangular) room of an house, physically delimited by solid <ks>walls</ks>;</li>
+	<li>for <ks>den</ks>: a secure position, near one of the four <ks>wall</ks>, where the robots starts his <ks>work</ks> and where he returns after he <ks>finds an obstacle</ks>;</li>
+	<li>for <ks>cautios</ks>: describes that the robot will return to the den position when <ks>finds an obstacle</ks>;</li>
+	<li>for <ks>finds an obstacle</ks>: robot detect a collision; Robots detect a collision like specified in <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html" target="web"><em>
+		VirtualRobot2021.html</em></a>;</li>
+	<li>for <ks>fixed obstacles</ks>: obstacle that ara fixed in place, not moving</li>
+	<li>for <ks>mobile obstacles</ks>: obscales that changes their position (there will be not)</li>
+	<li>for <ks>return to the den</ks>: come back to the then position, from wherever he is, avoiding obstacles;</li>
+	<li>for <ks>devices(sonar)</ks>: devices located out of the wall that can <ks>detect</ks> the <ks>robot</ks> presence in a strict line in front of them</li>
+	<li>for <ks>detect</ks>: sends message like specified in <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html" target="web"><em>
+		VirtualRobot2021.html</em></a> provided by the customer;</li>
+	<li>for <ks>mental map</ks>: data structure that represent the position of the <ks>obstacles</ks> in the room, referencing the <ks>den</ks>;</li>
+	<li>for <ks>work</ks>: robot moving (randomly or in a organized way) searching all possible obstacles in the envirorment around the den;</li>
+</ul>
+<br/>
+
+
+<h3> User Story (without Sonar)</h3>
+	<table style="width:98%">
+	<tbody>	
+	<tr>
+	<td style="width:60%" >
+	 
+	As user, I put the robot in its <ks>den position</ks> orientend with its back to the wall (south oriented);
+	Afterwards, I activate the <ks>cautiosExplorer</ks> application that moves the robot towards until it finds a obstacle, memorize it, and go backwards returning to the <ks>den position</ks>.
+	<br/>
+	The  application cannot be interrupted by any user-command.
+	<br/><br/>
+	When the application terminates we epect that the coordinates of the obstacle founded by the robot correspond to te position of the point of the wall we
+	indicated in the image and the path done by the robot is the same indicatend in the image.
+	A proper <em>TestPlan</em> should properly check this outcome.
+	</td>
+	<td><center><img src="./img/userStory1.png" alt="UserStory1" width="90%" ></center>
+	</td>
+	</tr>
+	 </tbody>
+	</table>
+	
+	<breakPage>
+	
+<br/><br/>
+<h3> User Story (with Sonar)</h3>
+	<table style="width:98%">
+	<tbody>	
+	<tr>
+	<td style="width:60%" >
+	 
+	As user, I put the robot in its <ks>den position</ks> orientend with its back to the wall (south oriented);
+	Afterwards, I activate the <ks>cautiosExplorer</ks> application that moves the robot towards until it will be detected by the sonar, memorize it, and go backwards returning to the <ks>den position</ks>.
+	<br/>
+	The  application cannot be interrupted by any user-command.
+	<br/><br/>
+	When the application terminates we epect that the coordinates of the obstacle founded by the robot correspond to te position of the point of the wall we
+	indicated in the image and the path done by the robot is the same indicatend in the image.
+	A proper <em>TestPlan</em> should properly check this outcome.
+	</td>
+	<td><center><img src="./img/userStory2.png" alt="UserStory2" width="90%" ></center>
+	</td>
+	</tr>
+	 </tbody>
+	</table>
+The customer does not impose any requirement on the programming language used to develop the application.
+
+
+<h2>Problem analysis</h2>
+	
+	We highlight that:
+	<ol>
+		<li>In the <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html#commands" target="web">VirtualRobot2021.html: commands</a> the customer states
+		that the robot can receive move commands in two different ways:
+			<ul>
+			<li>by sending messages to the port <tt>8090</tt> using  <ks>HTTP POST</ks> </li>
+			<li>by sending messages to the port <tt>8091</tt> using a <ks>websocket</ks> </li>
+			</ul>
+		And we can recieve information about Sensor and Sonar only form the websocket in a asynchronus way.
+		</li>
+		 
+		<li> With respect to the technological level, there are many libraries in many programming languages that support the
+		required protcols. 
+		<div class="remark">
+		However, the problem does introduce an <k>abstraction gap at the conceptual level</k>,
+		since <kc>the required logical interaction</kc> is not always a <em>request-response</em>. Wenv can <em>dispatch</em> some information at any time of the execution, even while
+		the application is executing commands (<em>request-response</em>) on the robot.
+		</div>
+		</li>
+		 
+		<li><h3>Logical Architecture</h3></li>
+			<table style="width:98%">
+			<tbody>	
+			<tr>
+			<td style="width:60%">
+			We nust design and build a <k>distributed system</k> with two software macro-components:
+				<ol>
+				<li>the <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html" target="web"><ks>VirtualRobot</ks></a>, given by the customer</li>
+				<li>our <ks>cautiosExplorer</ks> application that interacts with the robot with asynchronus communications</li>
+				</ol>
+			A first scheme of the logical architecture  of the systems can be defined as shown in the figure
+			(for the meaning of the symbols, see the <a href="./img/legenda.png" target="web">legenda</a>)
+
+			</td>
+			<td>  <center><img src="./img/iss0_logicArch0.png" alt="logicArch0" width="100%" ></center>
+			</td>
+			</tr>
+			</tbody>
+			</table>
+	</ol>
+	
+	<br/>
+	We observe that:
+	<ul>
+		<li>The specification of the exact 'nature' of our <em>cautiosExplorer</em> software is left to the designer.
+		However, we can say here that is it <b>not a database, or a function or an object</b>. And to properly handle the <ks>asynchronus communication</ks> on the webscoket
+		the designer could make reference to the <a href="https://it.wikipedia.org/wiki/Observer_pattern" target="web"><ks>Observer</ks></a> design pattern or a
+		<a href="https://en.wikipedia.org/wiki/Concurrency_pattern" target="web"><ks>Concurrency pattern</ks></a> like 
+		<a href="https://en.wikipedia.org/wiki/Monitor_(synchronization)" target="web"><ks>Monitor Object</ks></a>. </li>  
+		
+		<li>To make our <em>cautiosExplorer</em> software <k>as much as possibile independent</k> from the undelying communication protocols,
+		the designer could make reference to proper <a href="https://it.wikipedia.org/wiki/Design_pattern" target="web"><em>design pattern</em></a>, 
+		e.g.
+		<a href="https://it.wikipedia.org/wiki/Adapter_pattern" target="web"><ks>Adapter</ks></a>, 
+		<a href="https://it.wikipedia.org/wiki/Bridge_pattern" target="web"><ks>Bridge</ks></a>,
+		<a href="https://it.wikipedia.org/wiki/Fa%C3%A7ade_pattern" target="web"><ks>Facade</ks></a>.
+		</li>
+		
+		<li>As we are in a <kc>VirtualEnvirorment</kc> request of execution of a command to the robot should reference the <em>request-response</em> communication pattern, while
+		asynchronus messages sends by the robot representing information on Sensor and Sonar should reference the <em>dispatch</em> communication method
+		</li>
+		
+	</ul> 
+		<br/>
+		We can define in a simple way a possible behaviour of the robot to meet the requirements:
+		<pre>
+			Let us define the <kc>den Position</kc> in the map relative to axis (x,y);
+			The robot start in the den position, oriented always back to the wall;
+			-	Send to the robot the request to execute the command <kc>moveForward</kc> until returns false or
+				the <ks>Forward Collision Sensor</ks> communicate a collision or a <ks>Sonar</ks> communicate a true detection;			 
+				and count the <kc>moveForward</kc> number of executions;
+			-	Save the number of <kc>moveForward</kc> execution and the type of Obstacle founded (solid or Sonar);
+			-	Send request of <kc>moveBackward</kc> <!--many times as equal the number saved, or -->until robot returns a collision
+			- 	Return the obstacle position and the type of obstacle</pre>
+		
+	
+
+<h2>Test plans</h2> 
+To check that the application fulfills the requirements, we could keep track of the moves done by the robot.
+For example, supposed we define a the time of execution as the robot wil move a distance pair to its lenght (<ks>RobotUnit</ks>).
+We also divide the map of using the <ks>RobotUnits</ks> (lenght of the robot) and we know the obstacle position:
+
+<pre>
+...
+set <kc>int obstacleD, denX, denY</kc> to our real value (obstacle distance expected in Robot unit, den poisiton x and y)
+let us define <kc>String moves=""; int moveW=0, moveB=0</kc>
+for 4 times: 
+	1) send to the robot the request to execute the command <kc>moveForward</kc>;
+	if the answer is 'true' <ks>append the symbol "w"</ks> to <kc>moves</kc> , increment moveW and continue to do 1); 
+	2) when the answer of the request becomes 'false' or the <ks>Sonar</ks> commnicate a detection go to 3)
+	3) send to the robot the request to execute the command <kc>moveBackward</kc>;
+	if the answer is 'true' <ks>append the symbol "b"</ks> to <kc>moves</kc> , increment moveB and continue to do 3);
+	end;</pre>
+
+In this way, when the application terminates, the string <kc>moves</kc> should have the typical structure of a 
+<a href="https://en.wikipedia.org/wiki/Regular_expression" target="web"><em>regular expression</em></a>,
+that can be easily checked with a TestUnit software:
+<pre><kc>moves</kc>: <ks>"w*b*"</ks>     <kc><ks>*</ks> : repetion N times(N>=0) </pre>
+Also <kc>moveW</kc> has to be equal to <kc>moveB</kc>, easy to check: <pre><kc>moveW==moveB</kc></pre>
+Also <kc>moveW</kc> has to be equal to <kc>obstacleD</kc> if the robot finds the right obstacle position: <pre><kc>moveW==obstacleD</kc></pre> <br/>
+
+
+
+<h2>Project</h2> 
+
+<h3 id="AppMsg">Abstraction: Towards message-based interaction</h3>
+<div class="remark">
+Since we intend to develop distributed applications and to <ks>gradually perform a transition</ks> from component-interaction 
+based on <k>procedure-calls</k> to the usage of <k>distributed</k> components that interact
+using <k> messages</k>,  let us introduce here a more general representation of messages.
+
+</div>
+
+<table style="width:98%">
+<tbody>	
+ <tr>
+<td style="width:50%">
+From the point of view of the application designer, we do introduce the following terminology:<br/><br/>
+ <ul>
+<li><bc>Dispatch</bc>: a message '<i>fire and forget</i>': the sender does not expect any answer.</li>
+<li><bc>Request</bc>: the sender expects an answer sent using a <bc>Reply</bc>.</li>
+<li><bc>Invitation</bc>: the sender expects an <tt>ack</tt>.</li>
+<li><bc>Event</bc>: the sender '<i>emits information</i>' without specifying any receiver. <!--(<tt>RECEIVER=none</tt>)--> </li>
+</ul>
+</td>
+<td>
+<center><img src="./img/issMsgSymbols.png" alt="issMsgSymbols" width="40%" ></center>
+ 
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Project Architecture</h3>
+
+<table style="width:98%">
+<tbody>
+<tr>
+
+<td>
+
+<h3>Nature of the application component</h3>
+The <em>cautiosExplorer</em> application is a <k>conventional Java program</k>, represented in the figure as an object with an internal thread.
+
+Our cautiosExplorer application should
+<ul>
+<li>send a <em>request</em> to WEnv for the execution of a robot-move command</li>
+<li>handle the <em>reply</em> sent by WEnv to the robot-move command request</li>
+<li>handle the information sent by WEnv to cautiosExplorer as a <em>dispatch</em> carrying the detection by the sonar and collision by sensors</li>
+</ul>
+
+</td>
+<td style="width:50%" >
+
+<center><img src="./img/projectArch1.png" alt="logicArch1" width="100%" ></center>
+ 
+</td>
+</tr>
+
+<tr>
+	<td>
+		<h3>Zoom-In of the cautiosExplorer architecture</h3>
+		Referencing the Project of <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/main/it.unibo.boundaryWalk/userDocs/BoundaryWalk.html#project"><ks>BoundaryWalk</ks></a>
+		the code of the program is structured according to a conventional <em>layered architecture</em>,
+		which is the simplest form of software architectural pattern, where the components are organized in <i>horizontal layers</i>.
+		<br/>
+		We introduce the following layers:<br/><br/>
+		<ol>
+		<li><k>Application layer</k><!--:  this layer is representad by the class <a href="https://github.com/anatali/issLab2021/blob/ade51131f524b4e43422d830d694b8e676320b9a/it.unibo.boundaryWalk/app/src/main/java/it/unibo/interactionExamples/UseRobotApp.java" target="web"><em>UsageRobot.java</em></a>
+		that is annotated with information about the protocol to be used.
+		<br/>
+		The application-specific annotation is defined in the interface: 
+		<a href="https://github.com/anatali/issLab2021/blob/main/it.unibo.boundaryWalk/app/src/main/java/it/unibo/annotations/IssProtocolSpec.java" target="web"><em>IssProtocolSpec.java</em></a>
+		<br/><br/>
+		-->
+		</li>
+		<li><k>RobotSupport layer</k>: this layer provides a support that helps the design and the implementation of robot-based applications. <!-- It
+		is representad by the class <a href="https://github.com/anatali/issLab2021/blob/ade51131f524b4e43422d830d694b8e676320b9a/it.unibo.boundaryWalk/app/src/main/java/it/unibo/robotSupports/IssAppRobotSupport.java" target="web"><em>IssRobotSupport.java</em></a>
+		that provides operations to interact with the robot using a <ks>aril</ks> (abstract robot interaction language):
+		<br/><br/>
+		-->
+		</li>
+		<li><k>Communication layer</k>: this layer provides a support for using the protocols required by the application.<!--
+		It is represented by the class <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/main/it.unibo.boundaryWalk//app/src/main/java/it/unibo/interaction/IssCommunications.java" target="web"><em>IssCommunications.java</em></a>
+		that 
+		<br/><br/>
+		-->
+	</td>
+	<td style="width:50%"><center><img src="./img/projectArch0Zoom.png" alt="logicArch1" width="100%" ></center></td>
+</tr>
+
+<tr>
+	<td>
+		<h3>Application Layer Structure</h3>
+		The application layer will be structured with two <ks>THREADS</ks> to handle <em>asynchronus communications</em>:
+		<ul>
+			<li>One requesting commands to te Robot (Wenv)</li>
+			<li>A listener handling all the messages recived from the robot(Wenv)</li>
+		</ul>
+		This way the application can handle messages coming from the Wenv at any time, handling response of the robot and information messages from the Sonar or Sensors 
+		to <em>REACT</em> suddenly and in the right way all the messages coming from Wenv without any inconsistency or wasting of time.
+	</td>
+	<td style="width:50%">
+		<center><img src="./img/projectArch2.png" alt="logicArch1" width="100%" ></center>
+	</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<h2>Testing</h2> 
+ 
+
+<h2>Deployment</h2> 
+
+ 
+<h2>Maintenance</h2> 
+ 
+<!-- USEFUL
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+</td>
+<td></td>
+</tr>
+</table>
+-->
+	      	
+<br/><br/>  
+
+<div style="background-color:rgba(86, 56, 253, 0.9); width:30%;text-align:left;color:white; padding-bottom:10px; padding-top:5px; padding-right:5px; padding-left:5px; width:98%;">
+
+<h3>
+	By LUCA LANDOLFI email: luca.landolfi3@studio.unibo.it<br/>
+	<!--GitHub : <a href="https://github.com/LucaLand/LandolfiLuca">https://github.com/LucaLand/LandolfiLuca</a>-->
+</h3> 
+<img src="./img/Luca_Teams01.jpg" alt="LandolfiLuca" width="150px" height="150px">
+
+</div>
+<hr/>
+
+
+
+</body>
+</html>
