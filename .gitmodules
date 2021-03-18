@@ -1,3 +1,6 @@
 [submodule "it.unibo.boundaryWalk"]
 	path = it.unibo.boundaryWalk
 	url = https://github.com/LucaLand/LandolfiLuca1
+[submodule "lan.luca.resumableBoundaryWalker"]
+	path = lan.luca.resumableBoundaryWalker
+	url = https://github.com/LucaLand/resumableBoundaryWalker
