@@ -3,6 +3,7 @@ it.unibo.wenvusage/
 
 #Ingore personal File
 .link
+preset/
 
 # Ignore Logs
 logs
@@ -18,3 +19,4 @@ logs
 .idea/
 .vscode/
 *.sw*
+

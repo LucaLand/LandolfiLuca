@@ -4,3 +4,6 @@
 [submodule "lan.luca.resumableBoundaryWalker"]
 	path = lan.luca.resumableBoundaryWalker
 	url = https://github.com/LucaLand/resumableBoundaryWalker
+[submodule "lan.luca.iss2021_resumablebw"]
+	path = lan.luca.iss2021_resumablebw
+	url = https://github.com/LucaLand/iss2021_resumablebw
