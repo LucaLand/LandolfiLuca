@@ -4,6 +4,7 @@ it.unibo.wenvusage/
 #Ingore personal File
 .link
 preset/
+tests/
 
 # Ignore Logs
 logs
