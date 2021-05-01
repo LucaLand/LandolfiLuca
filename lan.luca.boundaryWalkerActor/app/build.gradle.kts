@@ -80,6 +80,7 @@ dependencies {
 //UNIBO
     implementation("uniboIssActorKotlin:kotlinSupport:3.0")
     implementation("uniboIssSupport:IssWsHttpJavaSupport:1.0")
+    implementation("uniboConsoleGui:resumablebw")
     //implementation("uniboInterfaces:uniboInterfaces")
     //implementation("uniboProtocolSupport:unibonoawtsupports")
     //implementation("uniboplanner20:it.unibo.planner20:1.0")
@@ -90,7 +91,7 @@ application {
     // Define the main class for the application.
     mainClass.set("lan.luca.boundaryWalkerActor.BoundaryWalkerActorKt")
 }
-version = "1.0"
+version = "2.0"
 
 //To create the image
 tasks.jar {
