@@ -1,0 +1,103 @@
+<!--
+ * See https://www.baeldung.com/spring-boot-change-port
+ * https://howtodoinjava.com/spring-webflux/spring-webflux-tutorial/
+ * https://docs.spring.io/spring-framework/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/web-reactive.html
+ * BAD REQUEST ( enctype="text/plain") https://www.ionos.it/digitalguide/hosting/tecniche-hosting/messaggio-di-errore-http-400-alla-ricerca-delle-cause/
+
+Content type 'application/x-www-form-urlencoded' not supported
+when we use application/x-www-form-urlencoded, Spring doesn't understand it as a RequestBody
+-->
+
+<!DOCTYPE html >
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>naiveGui</title>
+      
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>      
+
+ </head>
+<body>
+<h1><span th:text="${arg}">Arg to be replaced</span></h1>
+
+<h2>Basic moves and step(p)</h2>
+<form action="/domove" method="post">
+<table style="width:90%">
+<tbody>
+<tr>
+    <td><center><button id="RESUME" class="btn btn-default button" type="submit" name="movetodo" value="RESUME">RESUME</button></center></td>
+</tr>
+<tr>
+    <td><center><button id="STOP" class="btn btn-default button" type="submit" name="movetodo" value="STOP">STOP</button></center></td>
+</tr>
+</tbody>
+</table>
+
+
+<br/>
+
+<table style="width:90%">
+    <tbody>
+    <tr>
+        <td><center><button id="SHOW" style="padding: 5px; margin: 3px;" class="btn btn-default" type="submit" name="movetodo" value="SHOW">REFRESH MAP</button></center></td>
+    </tr>
+    <tr>
+        <center></center><td >
+            <p  ><pre style="margin-left: 33%; margin-right: 33%; width: 33%;"  th:text="${map}">MAP to be shown</pre></p>
+        </td>
+    </tr>
+
+</table>
+</form>
+<!--
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/w".</p>
+
+<table style="width:50%">
+    <tbody>
+    <tr>
+        <td>
+            <form class="form-inline"><button id="ww" class="btn btn-default" type="submit">w</button></form>
+        </td>
+        <td>
+            <form class="form-inline"><button id="ss" class="btn btn-default" type="submit">s</button></form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form class="form-inline"><button id="rr" class="btn btn-default" type="submit">r</button></form>
+        </td>
+        <td>
+            <form class="form-inline"><button id="ll" class="btn btn-default" type="submit">l</button></form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form class="form-inline"><button id="pp" class="btn btn-default" type="submit">p</button></form>
+        </td>
+        <td>
+            <form class="form-inline"><button id="hh" class="btn btn-default" type="submit">h</button></form>
+        </td>
+    </tr>
+</table>
+-->
+</body>
+</html>
